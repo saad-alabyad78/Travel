@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('travels', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->string("name")->unique();
+            $table->string("name");
             $table->boolean("is_public")->default(false);
             $table->string("slug")->unique();
             $table->text("description");
@@ -27,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('travel');
+        Schema::dropIfExists('travels');
     }
 };
