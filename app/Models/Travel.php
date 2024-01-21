@@ -24,7 +24,7 @@ class Travel extends Model
         'number_of_days',
     ];
 
-    public function Tours(): HasMany
+    public function tours(): HasMany
     {
         return $this->hasMany(Tour::class);
     }
