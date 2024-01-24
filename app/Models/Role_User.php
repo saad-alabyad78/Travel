@@ -9,4 +9,6 @@ use Illuminate\Database\Eloquent\Model;
 class Role_User extends Model
 {
     use HasFactory , HasUuids;
+
+    protected $table = 'role_user' ;
 }
