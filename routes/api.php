@@ -20,7 +20,19 @@ use Illuminate\Support\Facades\Route;
 Route::get('travels' , [TravelController::class , 'index']);
 Route::get('travels/{travel:slug}/tours' , [TourController::class , 'index']);
 
-Route::put('admin/travel' , [Admin\TravelController::class , 'store'])
-            ->middleware(['auth:sanctum' , 'role:admin']);
+
+Route::middleware(['auth:sanctum'])->group(function(){
+
+    Route::middleware(['role:admin'])->group(function(){
+        Route::post('admin/travel' , [Admin\TravelController::class , 'store']);
+    })->prefix('admin');
+
+    Route::middleware(['role:editor'])->group(function(){
+
+    });
+
+    Route::put('/travel' , [Admin\TravelController::class , 'update']);
+
+});
 
 Route::post('login' , Auth\LoginController::class);
